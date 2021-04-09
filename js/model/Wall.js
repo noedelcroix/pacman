@@ -1,5 +1,5 @@
 /**
- * A wall extends Tile and can't be crossed by pacman
+ * A wall is a Tile can't be crossed by pacman
  */
 class Wall extends Tile{
     
