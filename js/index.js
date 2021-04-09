@@ -1,4 +1,3 @@
-
 const displayMaze = () => {
     for (let row = 0; row < RAW_MAZE.table.length; row++) {
         for (let column = 0; column < RAW_MAZE.table[row].length; column++) {
@@ -21,3 +20,11 @@ const displayMaze = () => {
         }
     }
 }
+
+const main = ()=>{
+    displayMaze();
+}
+
+$(document).ready(()=>{
+    main();
+})
