@@ -14,12 +14,12 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 0.5rem;
+  background-color: black;
 }
 body > * {
   width: 420px;
 }
 body, body header, body footer {
-  background-color: black;
   border: solid 4px blue;
   min-height: 5vh;
   border-collapse: separate;
@@ -45,9 +45,30 @@ body header #currentScore {
   grid-area: score;
 }
 body #game {
-  background: grey;
   height: 465px;
   margin: 0.5rem 0;
+  position: relative;
+}
+body #game * {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+body #game .wall {
+  background: blue;
+}
+body #game .pacDot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #game .pacDot span {
+  background: yellow;
+  width: 50%;
+  height: 50%;
+  border-radius: 15px 15px;
 }
 
 /*# sourceMappingURL=index.css.map */

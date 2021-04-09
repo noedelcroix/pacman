@@ -14,12 +14,12 @@ body
     flex-direction: column
     align-items: center
     padding: 0.5rem
+    background-color: black
 
     &>*
         width: 420px
 
     &, header, footer
-        background-color: black
         border: solid 4px blue
         min-height: 5vh
         border-collapse: separate
@@ -45,6 +45,28 @@ body
             grid-area: score
     
     #game
-        background: grey
         height: 465px
         margin: 0.5rem 0
+        position: relative
+
+        *
+            width: 15px
+            height: 15px
+            position: absolute
+            padding: 0
+            margin: 0
+
+        .wall
+            background: blue
+
+        .pacDot
+            display: flex
+            justify-content: center
+            align-items: center
+
+            span
+                background: yellow
+                width: 50%
+                height: 50%
+                border-radius: 15px 15px
+    
