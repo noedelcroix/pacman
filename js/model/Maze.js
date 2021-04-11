@@ -62,14 +62,14 @@ class Maze{
     /**
      * @returns number of Maze rows.
      */
-    get rows(){
+    get nbRows(){
         return this._rawMaze.table.length;
     }
 
     /**
      * @returns number of Maze columns.
      */
-    get columns(){
+    get nbColumns(){
         return this._rawMaze.table[0].length;
     }
 }
