@@ -34,6 +34,10 @@ class Maze{
                     /*case 3 :
                         this.layers[typeTile].setTile(new Position(row, column), new Dot(`${row} ${column}`, true));
                         break;*/
+
+                    case 4:
+                        this._pacmanRespawn = new Position(row, column);
+                        break;
                 }
             }
         }
@@ -60,6 +64,37 @@ class Maze{
     }
 
     /**
+     * 
+     * @param {Position} position 
+     * @returns if the given Position is a wall or not.
+     */
+    canWalkOn(position){
+        return this.layers[1].contains(position) && !this.layers[1].hasTile(position);
+    }
+
+    /**
+     * 
+     * @param {Position} position 
+     * @returns if the given Position contains a dot or not.
+     */
+    canPick(position){
+        return this.layers[2].contains(position) && (this.layers[2].hasTile(position) || this.layers[3].hasTile(position));
+    }
+
+    /**
+     * 
+     * @param {Position} position 
+     * @returns the dot at the given Position.
+     */
+    pick(position){
+        if(this.canPick(position)){
+            return this.layers[2].getTile(position) || this.layers[3].getTile(position);
+        }else{
+            throw "No dot there.";
+        }
+    }
+
+    /**
      * @returns number of Maze rows.
      */
     get nbRows(){
@@ -71,5 +106,12 @@ class Maze{
      */
     get nbColumns(){
         return this._rawMaze.table[0].length;
+    }
+
+    /**
+     * @returns pacman respawn position.
+     */
+    get pacmanRespawn(){
+        return this.pacmanRespawn;
     }
 }
