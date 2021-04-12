@@ -25,4 +25,13 @@ class Position {
     get column() {
         return this._column;
     }
+
+    /**
+     * 
+     * @param {Direction} direction 
+     * @returns next direction following passed Direction.
+     */
+    nextPosition(direction){
+        return new Position(this._row+direction.deltaRow, this._column+direction.deltaColumn);
+    }
 }

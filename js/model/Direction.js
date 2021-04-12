@@ -7,7 +7,7 @@ class Direction{
      * @param {number} deltaColumn 
      * @param {number} deltaRow 
      */
-    constructor(deltaColumn, deltaRow){
+    constructor(deltaRow, deltaColumn){
         this._deltaColumn = deltaColumn;
         this._deltaRow = deltaRow;
     }
