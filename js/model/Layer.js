@@ -15,7 +15,7 @@ class Layer {
     /**
      * 
      * @param {Position} pos 
-     * @returns {boolean}
+     * @returns {boolean} contains or not
      */
     contains(pos) {
         return 0 <= pos.row && pos.row < this._array.length && 0 <= pos.column && pos.column < this._array[0].length;
@@ -33,7 +33,7 @@ class Layer {
     /**
      * 
      * @param {Position} pos 
-     * @returns {Tile}
+     * @returns {Tile} tile
      */
     getTile(pos) {
         if (!this.contains(pos)) throw "Position is not inside the board.";
@@ -43,7 +43,7 @@ class Layer {
     /**
      * 
      * @param {Position} pos 
-     * @returns {boolean}
+     * @returns {boolean} hasTile or not
      */
     hasTile(pos) {
         if (!this.contains(pos)) throw "Position is not inside the board.";

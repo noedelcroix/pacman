@@ -1,4 +1,18 @@
 @import url("https://fontlibrary.org//face/dogica");
+@keyframes pacmanEat {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 * {
   font-family: "DogicaPixelRegular";
   font-weight: bolder;
@@ -69,6 +83,30 @@ body #game .pacDot span {
   width: 50%;
   height: 50%;
   border-radius: 15px 15px;
+}
+body #game .pacDot.energizer span {
+  background: orange !important;
+}
+body #game .pacman {
+  background-color: yellow;
+  border-radius: 15px 15px;
+}
+body #game .pacman.EAST {
+  transform: rotateZ(0deg);
+}
+body #game .pacman.SOUTH {
+  transform: rotateZ(90deg);
+}
+body #game .pacman.WEST {
+  transform: rotateZ(180deg);
+}
+body #game .pacman.NORTH {
+  transform: rotateZ(-90deg);
+}
+body #game .pacman span {
+  clip-path: polygon(110% 100%, 40% 50%, 110% 0%);
+  background: black;
+  animation: pacmanEat 0.15s linear infinite alternate-reverse;
 }
 
 /*# sourceMappingURL=index.css.map */

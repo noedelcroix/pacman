@@ -20,9 +20,9 @@ class Maze{
                 let typeTile = this._rawMaze.table[row][column];
 
                 switch (typeTile){
-                    /*case 0 : case 4 : case 5 :
+                    case 0 :
                         this.layers[typeTile].setTile(new Position(row, column), new Tile(`${row} ${column}`));
-                        break;*/
+                        break;
                     case 1 :
                         this.layers[typeTile].setTile(new Position(row, column), new Wall(`${row} ${column}`));
                         break;
@@ -31,9 +31,9 @@ class Maze{
                         this.layers[typeTile].setTile(new Position(row, column), new Dot(`${row} ${column}`, false));
                         break;
 
-                    /*case 3 :
+                    case 3 :
                         this.layers[typeTile].setTile(new Position(row, column), new Dot(`${row} ${column}`, true));
-                        break;*/
+                        break;
 
                     case 4:
                         this._pacmanRespawn = new Position(row, column);
@@ -46,7 +46,7 @@ class Maze{
     /**
      * 
      * @param {Position} pos 
-     * @returns Wall Tile at the given position.
+     * @returns {Wall} Wall Tile at the given position.
      */
     getWallLayerTile(pos){
         if(!this.layers[1].contains(pos)) throw "Position is not inside the board.";
@@ -56,17 +56,17 @@ class Maze{
     /**
      * 
      * @param {Position} pos 
-     * @returns Dot Tile at the given position.
+     * @returns {Dot} Dot Tile at the given position.
      */
     getDotLayerTile(pos){
         if(!this.layers[1].contains(pos)) throw "Position is not inside the board.";
-        return this.layers[2].getTile(pos);
+        return this.layers[2].getTile(pos) || this.layers[3].getTile(pos);
     }
 
     /**
      * 
      * @param {Position} position 
-     * @returns if the given Position is a wall or not.
+     * @returns {boolean} if the given Position is a wall or not.
      */
     canWalkOn(position){
         return this.layers[1].contains(position) && !this.layers[1].hasTile(position);
@@ -75,7 +75,7 @@ class Maze{
     /**
      * 
      * @param {Position} position 
-     * @returns if the given Position contains a dot or not.
+     * @returns {boolean} if the given Position contains a dot or not.
      */
     canPick(position){
         return this.layers[2].contains(position) && (this.layers[2].hasTile(position) || this.layers[3].hasTile(position));
@@ -84,7 +84,7 @@ class Maze{
     /**
      * 
      * @param {Position} position 
-     * @returns the dot at the given Position.
+     * @returns {Dot} the dot at the given Position.
      */
     pick(position){
         if(this.canPick(position)){
@@ -95,23 +95,23 @@ class Maze{
     }
 
     /**
-     * @returns number of Maze rows.
+     * @returns {number} number of Maze rows.
      */
     get nbRows(){
         return this._rawMaze.table.length;
     }
 
     /**
-     * @returns number of Maze columns.
+     * @returns {number} number of Maze columns.
      */
     get nbColumns(){
         return this._rawMaze.table[0].length;
     }
 
     /**
-     * @returns pacman respawn position.
+     * @returns {Pacman} pacman respawn position.
      */
     get pacmanRespawn(){
-        return this.pacmanRespawn;
+        return this._pacmanRespawn;
     }
 }

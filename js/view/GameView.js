@@ -7,18 +7,27 @@ class GameView{
      * @param {Game} game 
      */
     constructor(game){
-        $("#game").width(game.maze.nbColumns*tileSize).height(game.maze.nbRows*tileSize);
+        this._game = game;
+        $("#game").width(this._game.maze.nbColumns*tileSize).height(this._game.maze.nbRows*tileSize);
 
-        for (let row = 0; row < game.maze.nbRows; row++) {
-            for (let column = 0; column < game.maze.nbColumns; column++) {
-                if(typeof game.maze.getWallLayerTile(new Position(row, column)) != 'undefined'){
+        for (let row = 0; row < this._game.maze.nbRows; row++) {
+            for (let column = 0; column < this._game.maze.nbColumns; column++) {
+                if(typeof this._game.maze.getWallLayerTile(new Position(row, column)) != 'undefined'){
                         $('<div class="wall"></div>').appendTo("#game").css({
                             "top": `${(row * tileSize)}px`,
                             "left": `${(column * tileSize)}px`,
                             "width": `${tileSize}px`,
                             "height": `${tileSize}px`
                         });
-                    }else if(typeof game.maze.getDotLayerTile(new Position(row, column)) != 'undefined'){
+                    }else if(typeof this._game.maze.getDotLayerTile(new Position(row, column)) != 'undefined'){
+                        if(this._game.maze.getDotLayerTile(new Position(row, column)).isEnergizer){
+                        $('<div class="pacDot energizer"><span></span></div>').appendTo("#game").css({
+                            "top": `${(row * tileSize)}px`,
+                            "left": `${(column * tileSize)}px`,
+                            "width": `${tileSize}px`,
+                            "height": `${tileSize}px`
+                        });
+                    }else{
                         $('<div class="pacDot"><span></span></div>').appendTo("#game").css({
                             "top": `${(row * tileSize)}px`,
                             "left": `${(column * tileSize)}px`,
@@ -26,7 +35,25 @@ class GameView{
                             "height": `${tileSize}px`
                         });
                     }
+                    }
                 }
             }
+
+            $('<div class="pacman WEST"><span></span></div>').appendTo("#game").css({
+                "top": `${(this._game.maze.pacmanRespawn.row * tileSize)}px`,
+                "left": `${(this._game.maze.pacmanRespawn.column * tileSize)}px`,
+                "width": `${tileSize}px`,
+                "height": `${tileSize}px`
+            });
+        }
+
+        /**
+         * refresh pacman position display
+         */
+        updateFrame(){
+            $(".pacman").css({
+                "top": `${(this._game.pacman.position.row * tileSize)}px`,
+                "left": `${(this._game.pacman.position.column * tileSize)}px`
+            })
         }
     }

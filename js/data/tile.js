@@ -12,7 +12,7 @@ class Tile {
     }
 
     /**
-     * @returns {string}
+     * @returns {string} id
      */
     get id() { return this._id; }
 }

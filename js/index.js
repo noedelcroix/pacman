@@ -1,5 +1,5 @@
 const main = () => {
-    new GameCtrl();
+    new GameCtrl().run();
 }
 
 $(document).ready(() => {

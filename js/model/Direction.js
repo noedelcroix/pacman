@@ -12,10 +12,16 @@ class Direction{
         this._deltaRow = deltaRow;
     }
 
+    /**
+     * @returns {number} deltaColumn
+     */
     get deltaColumn(){
         return this._deltaColumn;
     }
 
+    /**
+     * @returns {number} deltaRow
+     */
     get deltaRow(){
         return this._deltaRow;
     }

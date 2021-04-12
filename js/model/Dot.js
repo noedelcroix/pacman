@@ -15,7 +15,7 @@ class Dot extends Tile{
     }
 
     /**
-     * @returns {boolean}
+     * @returns {boolean} isEnergizer
      */
     get isEnergizer() {
         return this._isEnergizer;

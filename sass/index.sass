@@ -1,5 +1,15 @@
 @import url('https://fontlibrary.org//face/dogica')
 
+@keyframes pacmanEat
+    0%
+        opacity: 1
+    50%
+        opacity: 1
+    51%
+        opacity: 0
+    100%
+        opacity: 0
+
 *
     font-family: 'DogicaPixelRegular'
     font-weight: bolder
@@ -69,4 +79,28 @@ body
                 width: 50%
                 height: 50%
                 border-radius: 15px 15px
+
+            &.energizer span
+                background: orange !important
+
+        .pacman
+            background-color: yellow
+            border-radius: 15px 15px
+
+            &.EAST
+                transform: rotateZ(0deg)
+            
+            &.SOUTH
+                transform: rotateZ(90deg)
+            
+            &.WEST
+                transform: rotateZ(180deg)
+
+            &.NORTH
+                transform: rotateZ(-90deg)
+
+            span
+                clip-path: polygon(110% 100%, 40% 50%, 110% 0%)
+                background: black
+                animation: pacmanEat 0.15s linear infinite alternate-reverse
     

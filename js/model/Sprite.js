@@ -19,17 +19,30 @@ class Sprite extends Component{
         this._askedDirection;
     }
 
+    /**
+     * @returns {Position} position
+     */
     get position(){
         return this._position;
     }
 
+    /**
+     * @returns {Direction} direction
+     */
     get direction(){
         return this._direction;
     }
 
+    /**
+     * @returns {boolean} asked or not to change direction
+     */
     get askedToChangeDirection(){
         return this._askedToChangeDirection;
     }
+
+    /**
+     * @returns {Direction} asked direction
+     */
     get askedDirection(){
         return this._askedDirection;
     }
@@ -57,5 +70,20 @@ class Sprite extends Component{
     changeDirection(){
         this._direction = this.askedDirection;
         this._askedToChangeDirection = false;
+
+        switch(this._direction){
+            case Direction.NORTH:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("NORTH");
+                break;
+            case Direction.SOUTH:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("SOUTH");
+                break;
+            case Direction.WEST:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("WEST");
+                break;
+            case Direction.EAST:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
+                break;
+        }
     }
 }
