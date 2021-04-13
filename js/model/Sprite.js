@@ -17,6 +17,7 @@ class Sprite extends Component{
 
         this._askedToChangeDirection = false;
         this._askedDirection;
+        this._previousPosition = this._direction;
     }
 
     /**
@@ -68,22 +69,15 @@ class Sprite extends Component{
      * change the current direction to asked next direction.
      */
     changeDirection(){
+        this._previousPosition = this._direction;
         this._direction = this.askedDirection;
         this._askedToChangeDirection = false;
+    }
 
-        switch(this._direction){
-            case Direction.NORTH:
-                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("NORTH");
-                break;
-            case Direction.SOUTH:
-                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("SOUTH");
-                break;
-            case Direction.WEST:
-                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("WEST");
-                break;
-            case Direction.EAST:
-                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
-                break;
-        }
+    /**
+     * Have to be override in Ghost class.
+     */
+    notifyIsBlocked(){
+        
     }
 }

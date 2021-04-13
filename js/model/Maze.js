@@ -38,6 +38,10 @@ class Maze{
                     case 4:
                         this._pacmanRespawn = new Position(row, column);
                         break;
+
+                    case 5:
+                        this._ghostsRespawn = new Position(row, column);
+                        break;
                 }
             }
         }
@@ -109,9 +113,16 @@ class Maze{
     }
 
     /**
-     * @returns {Pacman} pacman respawn position.
+     * @returns {Position} pacman respawn position.
      */
     get pacmanRespawn(){
         return this._pacmanRespawn;
+    }
+
+    /**
+     * @returns {Position} ghosts respawn position.
+     */
+     get ghostsRespawn(){
+        return this._ghostsRespawn;
     }
 }
