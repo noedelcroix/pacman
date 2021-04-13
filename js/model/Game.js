@@ -38,43 +38,48 @@ class Game{
     }
 
     /**
+     * Set the orientation of pacman.
+     */
+    setPacmanOrientation(){
+        switch(this._pacman.direction){
+            case Direction.NORTH:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("NORTH");
+                break;
+            case Direction.SOUTH:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("SOUTH");
+                break;
+            case Direction.WEST:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("WEST");
+                break;
+            case Direction.EAST:
+                $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
+                break;
+        }
+    }
+
+    /**
      * Move pacman following the good direction (asked direction or current direction).
      */
     _movePacman(){
         if(this._pacman.askedToChangeDirection && this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.askedDirection))){
             this._pacman.changeDirection();
-            switch(this._pacman.direction){
-                case Direction.NORTH:
-                    $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("NORTH");
-                    break;
-                case Direction.SOUTH:
-                    $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("SOUTH");
-                    break;
-                case Direction.WEST:
-                    $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("WEST");
-                    break;
-                case Direction.EAST:
-                    $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
-                    break;
-            }
-
-            ghost.move();
+            this.setPacmanOrientation();
         }
-        if(this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.direction))){
+        else if(this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.direction))){
         this._pacman.move();
         }
     }
 
     /**
-     * Move all ghosts following the good direction (asked direction or current direction).
+     * Move all ghosts following the good direction (asked direction or current direction) and detect if ghost eat pacman.
      */
     _moveGhosts(){
-        this._ghosts.every(ghost => {
+        let alreadyHasBeenEaten = false;
+        this._ghosts.forEach(ghost => {
             if(ghost.askedToChangeDirection && this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection))){
                 ghost.changeDirection();
-                ghost.move();
             }
-            if(this._maze.canWalkOn(ghost.position.nextPosition(ghost.direction))){
+            else if(this._maze.canWalkOn(ghost.position.nextPosition(ghost.direction))){
             ghost.move();
             }else{
                 do{
@@ -82,14 +87,11 @@ class Game{
                 }
                 while(!this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection)));
                 ghost.changeDirection();
-                ghost.move();
             }
 
-            if(ghost.canEat(this._pacman)){
-                console.log("GAME OVER");
-                return false;
-            }else{
-                return true;
+            if(!alreadyHasBeenEaten && ghost.canEat(this._pacman)){
+                this._pacman.hasBeenEaten();
+                alreadyHasBeenEaten = true;
             }
         });
     }
@@ -100,5 +102,31 @@ class Game{
     moveSprites(){
         this._movePacman();
         this._moveGhosts();
+    }
+
+    /**
+     * @returns if game over or not
+     */
+    isGameOver(){
+        return this._pacman.nbLives <= 0;
+    }
+
+    /**
+     * 
+     * @returns if pacman has ben eaten
+     */
+    pacmanHasBeenEaten(){
+        return this._pacman.isDead();
+    }
+
+    /**
+     * respawn pacman
+     */
+    respawn(){
+        this._pacman.respawn();
+        this.setPacmanOrientation();
+        this._ghosts.forEach((ghost)=>{
+            ghost.respawn();
+        })
     }
 }

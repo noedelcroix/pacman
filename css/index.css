@@ -113,5 +113,16 @@ body #game .ghost {
   background-color: red;
   z-index: 1;
 }
+body footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+body footer .live {
+  background-color: green;
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+}
 
 /*# sourceMappingURL=index.css.map */

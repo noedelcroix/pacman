@@ -9,5 +9,21 @@ class Pacman extends Sprite {
     */
     constructor(position, direction) {
         super(position, direction, PACMAN_ID);
+        this._nbLives=NB_LIVES;
+    }
+
+    /**
+     * @returns number of lives
+     */
+    get nbLives(){
+        return this._nbLives;
+    }
+
+    /**
+     * Declare Sprite death and remove a live.
+     */
+    hasBeenEaten(){
+        super.hasBeenEaten();
+        this._nbLives--;
     }
 }

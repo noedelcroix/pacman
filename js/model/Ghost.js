@@ -31,7 +31,10 @@ class Ghost extends Sprite{
      * @returns if the Pacman is eatable by this ghost.
      */
     canEat(pacman){
-        return (this.position.row == pacman.position.row && this.position.column == pacman.position.column) || (this._previousPosition.row == pacman.position.row && this._previousPosition.column == pacman.position.column);
+        return(
+            JSON.stringify(this.position) === JSON.stringify(pacman.position) ||
+            (JSON.stringify(this.previousPosition) === JSON.stringify(pacman.position) && JSON.stringify(this.position) === JSON.stringify(pacman.previousPosition))
+        )
     }
 
     /**

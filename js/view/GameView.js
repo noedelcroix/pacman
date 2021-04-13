@@ -57,7 +57,7 @@ class GameView{
         }
 
         /**
-         * refresh pacman position display
+         * refresh pacman and ghosts position display
          */
         updateFrame(){
             $(".pacman").css({
@@ -72,4 +72,14 @@ class GameView{
                 })
             });
         }
+
+        /**
+         * refresh lives
+         */
+         updateLives(){
+             $("footer").text("");
+            for(let i=0; i<this._game.pacman.nbLives; i++){
+                $("footer").append("<div class='live'></div>");
+            }
+         }
     }

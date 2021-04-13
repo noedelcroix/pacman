@@ -13,11 +13,14 @@ class Sprite extends Component{
     constructor(position, direction, id){
         super(id);
         this._position = position;
+        this._initPosition = position;
         this._direction = direction;
+        this._initDirection = direction;
 
         this._askedToChangeDirection = false;
         this._askedDirection;
-        this._previousPosition = this._direction;
+        this._previousPosition = position;
+        this._isDead = false;
     }
 
     /**
@@ -49,9 +52,24 @@ class Sprite extends Component{
     }
 
     /**
+     * @returns {boolean} isDead
+     */
+     get isDead(){
+        return this._isDead;
+    }
+
+    /**
+     * @returns {Position} previousPosition
+     */
+    get previousPosition(){
+        return this._previousPosition;
+    }
+
+    /**
      * Move the Sprite in the Direction property.
      */
     move(){
+        this._previousPosition = this._position;
         this._position = this._position.nextPosition(this._direction);
     }
 
@@ -69,9 +87,10 @@ class Sprite extends Component{
      * change the current direction to asked next direction.
      */
     changeDirection(){
-        this._previousPosition = this._direction;
+        this._previousPosition = this._position;
         this._direction = this.askedDirection;
         this._askedToChangeDirection = false;
+        this.move();
     }
 
     /**
@@ -79,5 +98,21 @@ class Sprite extends Component{
      */
     notifyIsBlocked(){
         
+    }
+
+    /**
+     * Declare Sprite death
+     */
+    hasBeenEaten(){
+        this._isDead = true;
+    }
+
+    /**
+     * Respawn this Sprite
+     */
+    respawn(){
+        this._isDead = false;
+        this._position = this._initPosition;
+        this._direction = this._initDirection;
     }
 }
