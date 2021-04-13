@@ -7,7 +7,8 @@ class Game{
      * @param {Object} rawMaze 
      */
     constructor(rawMaze){
-        this._maze = new Maze(rawMaze);
+        this._rawMaze = rawMaze;
+        this._maze = new Maze(this._rawMaze);
         this._pacman = new Pacman(this._maze.pacmanRespawn, Direction.WEST);
         this._ghosts = [];
         this._score = 0;
@@ -179,6 +180,28 @@ class Game{
         if(this._highScore < this._score){
             localStorage.setItem('highScore', this._score);
             this._highScore = this._score;
+        }
+    }
+
+    /**
+     * 
+     * @returns if the level succeed or not yet
+     */
+    lvlSucceed(){
+        return this._maze.isEmpty;
+    }
+
+    /**
+     * Go to next level
+     */
+    nextLevel(){
+        this._maze = new Maze(this._rawMaze);
+        this._pacman = new Pacman(this._maze.pacmanRespawn, Direction.WEST);
+        this._ghosts = [];
+        this._removedDot = this._pacman.position;
+
+        for(let i=0; i<NB_GHOSTS; i++){
+            this._ghosts.push(new Ghost(this._maze.ghostsRespawn, Direction.WEST, `ghost${i}`));
         }
     }
 }

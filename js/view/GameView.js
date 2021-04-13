@@ -12,40 +12,64 @@ class GameView{
 
         for (let row = 0; row < this._game.maze.nbRows; row++) {
             for (let column = 0; column < this._game.maze.nbColumns; column++) {
-                if(typeof this._game.maze.getWallLayerTile(new Position(row, column)) != 'undefined'){
-                        $('<div class="wall"></div>').appendTo("#game").css({
-                            "top": `${(row * tileSize)}px`,
-                            "left": `${(column * tileSize)}px`,
-                            "width": `${tileSize}px`,
-                            "height": `${tileSize}px`
-                        });
-                    }else if(typeof this._game.maze.getDotLayerTile(new Position(row, column)) != 'undefined'){
-                        if(this._game.maze.getDotLayerTile(new Position(row, column)).isEnergizer){
-                        $(`<div class="pacDot energizer" id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
-                            "top": `${(row * tileSize)}px`,
-                            "left": `${(column * tileSize)}px`,
-                            "width": `${tileSize}px`,
-                            "height": `${tileSize}px`
-                        });
-                    }else{
-                        $(`<div class="pacDot"  id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
-                            "top": `${(row * tileSize)}px`,
-                            "left": `${(column * tileSize)}px`,
-                            "width": `${tileSize}px`,
-                            "height": `${tileSize}px`
-                        });
-                    }
-                    }
+                this._displayTiles(row, column);
                 }
             }
 
+            this._displayPacman();
+            this._displayGhost();
+            this.displayGameOver();
+        }
+
+        /**
+         * Display Tiles on the beginning of game or level
+         * 
+         * @param {number} row 
+         * @param {number} column 
+         */
+        _displayTiles(row, column){
+            if(typeof this._game.maze.getWallLayerTile(new Position(row, column)) != 'undefined'){
+                $('<div class="wall"></div>').appendTo("#game").css({
+                    "top": `${(row * tileSize)}px`,
+                    "left": `${(column * tileSize)}px`,
+                    "width": `${tileSize}px`,
+                    "height": `${tileSize}px`
+                });
+            }else if(typeof this._game.maze.getDotLayerTile(new Position(row, column)) != 'undefined'){
+                if(this._game.maze.getDotLayerTile(new Position(row, column)).isEnergizer){
+                $(`<div class="pacDot energizer" id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
+                    "top": `${(row * tileSize)}px`,
+                    "left": `${(column * tileSize)}px`,
+                    "width": `${tileSize}px`,
+                    "height": `${tileSize}px`
+                });
+            }else{
+                $(`<div class="pacDot"  id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
+                    "top": `${(row * tileSize)}px`,
+                    "left": `${(column * tileSize)}px`,
+                    "width": `${tileSize}px`,
+                    "height": `${tileSize}px`
+                });
+            }
+            }
+        }
+
+        /**
+         * Display Pacman on the beginning of game or level
+         */
+        _displayPacman(){
             $('<div class="pacman WEST"><span></span></div>').appendTo("#game").css({
                 "top": `${(this._game.maze.pacmanRespawn.row * tileSize)}px`,
                 "left": `${(this._game.maze.pacmanRespawn.column * tileSize)}px`,
                 "width": `${tileSize}px`,
                 "height": `${tileSize}px`
             });
+        }
 
+        /**
+         * Display Ghosts on the beginning of game or level
+         */
+        _displayGhost(){
             this._game.ghosts.forEach((ghost)=>{
                 $(`<div class="ghost" id="${ghost.id}"><span></span></div>`).appendTo("#game").css({
                     "top": `${(this._game.maze.ghostsRespawn.row * tileSize)}px`,
@@ -53,9 +77,7 @@ class GameView{
                     "width": `${tileSize}px`,
                     "height": `${tileSize}px`
                 });
-            })
-
-            this.displayGameOver();
+            });
         }
 
         /**
@@ -101,5 +123,22 @@ class GameView{
          displayGameOver(){
             $("#highScore span").empty().text(this._game.highScore);
             console.log("GAME OVER !");
+         }
+
+         /**
+          * Go to next level
+          */
+         nextLevel(){
+             $("#game *").remove();
+
+             for (let row = 0; row < this._game.maze.nbRows; row++) {
+                for (let column = 0; column < this._game.maze.nbColumns; column++) {
+                    this._displayTiles(row, column);
+                    }
+                }
+
+                this._displayPacman();
+                this._displayGhost();
+                this.displayGameOver();
          }
     }

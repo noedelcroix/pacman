@@ -30,12 +30,12 @@ class Maze{
                     
                     case 2 :
                         this._layers[typeTile].setTile(new Position(row, column), new Dot(`dot${row}_${column}`, false));
-                        this.nbDots++;
+                        this._nbDots++;
                         break;
 
                     case 3 :
                         this._layers[typeTile].setTile(new Position(row, column), new Dot(`dot${row}_${column}`, true));
-                        this.nbDots++;
+                        this._nbDots++;
                         break;
 
                     case 4:
