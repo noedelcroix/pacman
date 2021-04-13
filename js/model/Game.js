@@ -31,6 +31,13 @@ class Game{
     }
 
     /**
+     * @returns {Array} ghosts
+     */
+     get ghosts(){
+        return this._ghosts;
+    }
+
+    /**
      * Move pacman following the good direction (asked direction or current direction).
      */
     _movePacman(){
@@ -50,6 +57,8 @@ class Game{
                     $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
                     break;
             }
+
+            ghost.move();
         }
         if(this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.direction))){
         this._pacman.move();
@@ -63,9 +72,17 @@ class Game{
         this._ghosts.every(ghost => {
             if(ghost.askedToChangeDirection && this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection))){
                 ghost.changeDirection();
+                ghost.move();
             }
             if(this._maze.canWalkOn(ghost.position.nextPosition(ghost.direction))){
             ghost.move();
+            }else{
+                do{
+                    ghost.notifyIsBlocked();
+                }
+                while(!this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection)));
+                ghost.changeDirection();
+                ghost.move();
             }
 
             if(ghost.canEat(this._pacman)){

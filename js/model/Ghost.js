@@ -21,6 +21,7 @@ class Ghost extends Sprite{
     _choiceNewDirection(){
         this._directions = [Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST];
         this._randNumber = Math.floor(Math.random() * this._directions.length);
+
         this.askToChangeDirection(this._directions[this._randNumber]);
     }
 

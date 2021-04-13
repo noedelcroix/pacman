@@ -45,6 +45,15 @@ class GameView{
                 "width": `${tileSize}px`,
                 "height": `${tileSize}px`
             });
+
+            this._game.ghosts.forEach((ghost)=>{
+                $(`<div class="ghost" id="${ghost.id}"><span></span></div>`).appendTo("#game").css({
+                    "top": `${(this._game.maze.ghostsRespawn.row * tileSize)}px`,
+                    "left": `${(this._game.maze.ghostsRespawn.column * tileSize)}px`,
+                    "width": `${tileSize}px`,
+                    "height": `${tileSize}px`
+                });
+            })
         }
 
         /**
@@ -54,6 +63,13 @@ class GameView{
             $(".pacman").css({
                 "top": `${(this._game.pacman.position.row * tileSize)}px`,
                 "left": `${(this._game.pacman.position.column * tileSize)}px`
-            })
+            });
+
+            this._game.ghosts.forEach((ghost)=>{
+                $(`#${ghost.id}`).css({
+                    "top": `${(ghost.position.row * tileSize)}px`,
+                    "left": `${(ghost.position.column * tileSize)}px`
+                })
+            });
         }
     }
