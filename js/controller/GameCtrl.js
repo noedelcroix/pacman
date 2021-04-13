@@ -21,8 +21,9 @@ class GameCtrl {
                 if (!this._game.isGameOver()) {
                     this._game.respawn();
                 } else {
-                    console.log("GAME_OVER");
                     clearInterval(this._timer);
+                    this._game.saveScore();
+                    this._view.displayGameOver();
                 }
             }
             this._view.updateFrame();

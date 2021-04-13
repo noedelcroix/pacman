@@ -16,6 +16,8 @@ class Game{
         for(let i=0; i<NB_GHOSTS; i++){
             this._ghosts.push(new Ghost(this._maze.ghostsRespawn, Direction.WEST, `ghost${i}`));
         }
+
+        this._highScore = localStorage.getItem("highScore") || 0;
     }
 
     /**
@@ -51,6 +53,13 @@ class Game{
      */
     get removedDot(){
         return this._removedDot;
+    }
+
+    /**
+     * @returns highScore
+     */
+    get highScore(){
+        return this._highScore;
     }
 
     /**
@@ -161,5 +170,15 @@ class Game{
         this._ghosts.forEach((ghost)=>{
             ghost.respawn();
         })
+    }
+
+    /**
+     * Save the new high score to localstorage
+     */
+    saveScore(){
+        if(this._highScore < this._score){
+            localStorage.setItem('highScore', this._score);
+            this._highScore = this._score;
+        }
     }
 }

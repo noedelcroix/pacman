@@ -54,6 +54,8 @@ class GameView{
                     "height": `${tileSize}px`
                 });
             })
+
+            this.displayGameOver();
         }
 
         /**
@@ -91,5 +93,13 @@ class GameView{
             for(let i=0; i<this._game.pacman.nbLives; i++){
                 $("footer").append("<div class='live'></div>");
             }
+         }
+
+         /**
+          * Display highScore
+          */
+         displayGameOver(){
+            $("#highScore span").empty().text(this._game.highScore);
+            console.log("GAME OVER !");
          }
     }
