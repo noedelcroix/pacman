@@ -6,8 +6,9 @@ class GameView{
      * Display game from Game model and resize the scene and tiles.
      * @param {Game} game 
      */
-    constructor(game){
+    constructor(game, gameCtrl){
         this._game = game;
+        this._gameCtrl = gameCtrl;
         $("#game").width(this._game.maze.nbColumns*tileSize).height(this._game.maze.nbRows*tileSize);
 
         for (let row = 0; row < this._game.maze.nbRows; row++) {
@@ -19,6 +20,10 @@ class GameView{
             this._displayPacman();
             this._displayGhost();
             this.displayGameOver();
+
+            this._displayStart();
+
+            $("#Start").on("click", ()=>this.startGame());
         }
 
         /**
@@ -64,6 +69,13 @@ class GameView{
                 "width": `${tileSize}px`,
                 "height": `${tileSize}px`
             });
+        }
+
+        /**
+         * display start button
+         */
+        _displayStart(){
+            $("#game").append("<input type='button' id='Start' value='Start' alt='Start' title='Start' />");
         }
 
         /**
@@ -140,5 +152,14 @@ class GameView{
                 this._displayPacman();
                 this._displayGhost();
                 this.displayGameOver();
+         }
+
+         /**
+          * Start game
+          */
+         startGame(){
+            $("#Start").css("display", "none");
+
+            this._gameCtrl.startHasBeenRequested();
          }
     }

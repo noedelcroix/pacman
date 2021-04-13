@@ -113,6 +113,19 @@ body #game .ghost {
   background-color: red;
   z-index: 1;
 }
+body #game input#Start {
+  background-color: black;
+  color: white;
+  top: 40%;
+  left: 40%;
+  height: 20%;
+  width: 20%;
+  position: absolute;
+  border: solid white 1px;
+}
+body #game input#Start:hover {
+  cursor: pointer;
+}
 body footer {
   display: flex;
   align-items: center;
