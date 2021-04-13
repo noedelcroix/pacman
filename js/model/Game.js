@@ -10,6 +10,8 @@ class Game{
         this._maze = new Maze(rawMaze);
         this._pacman = new Pacman(this._maze.pacmanRespawn, Direction.WEST);
         this._ghosts = [];
+        this._score = 0;
+        this._removedDot = this._pacman.position;
 
         for(let i=0; i<NB_GHOSTS; i++){
             this._ghosts.push(new Ghost(this._maze.ghostsRespawn, Direction.WEST, `ghost${i}`));
@@ -38,6 +40,20 @@ class Game{
     }
 
     /**
+     * @returns {number} score
+     */
+    get score(){
+        return this._score;
+    }
+
+    /**
+     * @returns {Dot} removed dot
+     */
+    get removedDot(){
+        return this._removedDot;
+    }
+
+    /**
      * Set the orientation of pacman.
      */
     setPacmanOrientation(){
@@ -58,6 +74,21 @@ class Game{
     }
 
     /**
+     * Remove dot and add points to score
+     */
+    _checkDot(){
+        if(this._maze.canPick(this._pacman.position)){
+            this._removedDot = this._maze.pick(this._pacman.position);
+
+            if(this._removedDot.isEnergizer){
+                this._score += 100;
+            }else{
+                this._score += 10;
+            }
+        }
+    }
+
+    /**
      * Move pacman following the good direction (asked direction or current direction).
      */
     _movePacman(){
@@ -68,6 +99,8 @@ class Game{
         else if(this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.direction))){
         this._pacman.move();
         }
+
+        this._checkDot();
     }
 
     /**

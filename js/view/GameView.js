@@ -21,14 +21,14 @@ class GameView{
                         });
                     }else if(typeof this._game.maze.getDotLayerTile(new Position(row, column)) != 'undefined'){
                         if(this._game.maze.getDotLayerTile(new Position(row, column)).isEnergizer){
-                        $('<div class="pacDot energizer"><span></span></div>').appendTo("#game").css({
+                        $(`<div class="pacDot energizer" id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
                             "top": `${(row * tileSize)}px`,
                             "left": `${(column * tileSize)}px`,
                             "width": `${tileSize}px`,
                             "height": `${tileSize}px`
                         });
                     }else{
-                        $('<div class="pacDot"><span></span></div>').appendTo("#game").css({
+                        $(`<div class="pacDot"  id="${this._game.maze.getDotLayerTile(new Position(row, column)).id}"><span></span></div>`).appendTo("#game").css({
                             "top": `${(row * tileSize)}px`,
                             "left": `${(column * tileSize)}px`,
                             "width": `${tileSize}px`,
@@ -57,6 +57,14 @@ class GameView{
         }
 
         /**
+         * Update board by removing removed dots and updating the current score
+         */
+        _checkRemovedDotAndUpdateScore(){
+                $(`#${this._game.removedDot.id}`).remove();
+                $("#currentScore").text(this._game.score);
+        }
+
+        /**
          * refresh pacman and ghosts position display
          */
         updateFrame(){
@@ -71,6 +79,8 @@ class GameView{
                     "left": `${(ghost.position.column * tileSize)}px`
                 })
             });
+
+            this._checkRemovedDotAndUpdateScore();
         }
 
         /**
