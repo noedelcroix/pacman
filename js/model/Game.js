@@ -59,7 +59,7 @@ class Game{
     /**
      * Move all ghosts following the good direction (asked direction or current direction).
      */
-    moveGhosts(){
+    _moveGhosts(){
         this._ghosts.every(ghost => {
             if(ghost.askedToChangeDirection && this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection))){
                 ghost.changeDirection();
@@ -81,7 +81,7 @@ class Game{
      * Move sprite following the good direction (asked direction or current direction).
      */
     moveSprites(){
-        this.movePacman();
-        this.moveGhosts();
+        this._movePacman();
+        this._moveGhosts();
     }
 }
