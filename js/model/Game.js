@@ -141,6 +141,11 @@ class Game {
         }
     }
 
+    newGame(){
+        this.nextLevel();
+        this._score = 0;
+    }
+
     /**
      * @returns {Maze} maze
      */

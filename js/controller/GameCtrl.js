@@ -21,6 +21,7 @@ class GameCtrl {
                 clearInterval(this._timer);
                 this._game.saveScore();
                 this._view.displayGameOver();
+                this._view.displayRestart();
             }
         }
     }
@@ -55,6 +56,14 @@ class GameCtrl {
      * Start request
      */
     startHasBeenRequested() {
+        this.run();
+    }
+
+    restartHasBeenRequested(){
+        this._game.newGame();
+        this._view.nextLevel();
+        this._pacmanCtrl = new PacmanCtrl(this._game.pacman);
+        this._pacmanView = new PacmanView(this._pacmanCtrl);
         this.run();
     }
 }

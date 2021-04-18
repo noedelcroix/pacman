@@ -8,7 +8,7 @@ class PacmanView {
      */
     constructor(pacmanCtrl) {
         $(".pacman span").css({
-            "animation": `pacmanEat 0.${RUN_INTERVAL/20}s linear infinite alternate-reverse`
+            "animation": `pacmanEat 0.${Math.round(RUN_INTERVAL/20)<10 ? "0"+Math.round(RUN_INTERVAL/20) : Math.round(RUN_INTERVAL/20)}s linear infinite alternate-reverse`
         });
 
         $(window).on("keydown", (event)=>{

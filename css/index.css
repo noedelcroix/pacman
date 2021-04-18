@@ -144,6 +144,29 @@ body #game input#Start {
 body #game input#Start:hover {
   cursor: pointer;
 }
+body #game #restart {
+  position: absolute;
+  height: 40%;
+  width: 60%;
+  top: 30%;
+  left: 20%;
+  background-color: black;
+  z-index: 15;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+body #game #restart * {
+  position: relative;
+  width: 90%;
+  height: 20%;
+  text-align: center;
+}
+body #game #restart input:hover {
+  background-color: red;
+  color: white;
+}
 body footer {
   display: flex;
   align-items: center;

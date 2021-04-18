@@ -163,4 +163,17 @@ class GameView {
 
         this._gameCtrl.startHasBeenRequested();
     }
+
+    /**
+     * 
+     */
+    displayRestart(){
+        $("#game").append(`
+        <section id="restart">
+        <h3>Game over !</h3>
+        <input type="button" value="Redemarrer" />
+        </section>
+        `);
+        $("#restart input").on("click", ()=>this._gameCtrl.restartHasBeenRequested());
+    }
 }
