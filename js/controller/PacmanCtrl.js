@@ -1,12 +1,12 @@
 /**
  * Controller for pacman Model.
  */
-class PacmanCtrl{
+class PacmanCtrl {
     /**
      * 
      * @param {Pacman} pacman 
      */
-    constructor(pacman){
+    constructor(pacman) {
         this._pacman = pacman;
     }
 
@@ -15,7 +15,7 @@ class PacmanCtrl{
      * 
      * @param {Direction} direction 
      */
-    askToChangeDirection(direction){
+    askToChangeDirection(direction) {
         this._pacman.askToChangeDirection(direction);
     }
 }

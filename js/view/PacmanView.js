@@ -1,14 +1,14 @@
 /**
  * View for pacman Model.
  */
-class PacmanView{
+class PacmanView {
     /**
      * 
      * @param {PacmanCtrl} pacmanCtrl 
      */
-    constructor(pacmanCtrl){
-        $(window).on( "keydown", function(event){
-            switch(event.key){
+    constructor(pacmanCtrl) {
+        $(window).on("keydown", function (event) {
+            switch (event.key) {
                 case "ArrowLeft":
                     pacmanCtrl.askToChangeDirection(Direction.WEST);
                     break;

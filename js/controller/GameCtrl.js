@@ -12,7 +12,7 @@ class GameCtrl {
     /**
      * Check if game over
      */
-    _checkGameOver(){
+    _checkGameOver() {
         if (this._game.pacman.isDead) {
             this._view.updateLives();
             if (!this._game.isGameOver()) {
@@ -28,8 +28,8 @@ class GameCtrl {
     /**
      * Check if it's the end of level
      */
-    _checkEndLevel(){
-        if(this._game.lvlSucceed()){
+    _checkEndLevel() {
+        if (this._game.lvlSucceed()) {
             this._game.nextLevel();
             this._view.nextLevel();
             this._pacmanCtrl = new PacmanCtrl(this._game.pacman);
@@ -53,7 +53,7 @@ class GameCtrl {
     /**
      * Start request
      */
-    startHasBeenRequested(){
+    startHasBeenRequested() {
         this.run();
     }
 }

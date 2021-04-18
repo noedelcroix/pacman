@@ -92,23 +92,6 @@ body #game .pacman {
   border-radius: 15px 15px;
   z-index: 2;
 }
-body #game .pacman.EAST {
-  transform: rotateZ(0deg);
-}
-body #game .pacman.SOUTH {
-  transform: rotateZ(90deg);
-}
-body #game .pacman.WEST {
-  transform: rotateZ(180deg);
-}
-body #game .pacman.NORTH {
-  transform: rotateZ(-90deg);
-}
-body #game .pacman span {
-  clip-path: polygon(110% 100%, 40% 50%, 110% 0%);
-  background: black;
-  animation: pacmanEat 0.15s linear infinite alternate-reverse;
-}
 body #game .ghost {
   background-color: red;
   z-index: 1;

@@ -1,7 +1,7 @@
 /**
  * Dot extends Tile and is an eatable tile
  */
-class Dot extends Tile{
+class Dot extends Tile {
 
     /**
      * id and isEnergizer needed

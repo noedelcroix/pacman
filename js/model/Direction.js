@@ -1,13 +1,13 @@
 /**
  * Direction class define a direction of any Spire.
  */
-class Direction{
+class Direction {
     /**
      * 
      * @param {number} deltaColumn 
      * @param {number} deltaRow 
      */
-    constructor(deltaRow, deltaColumn){
+    constructor(deltaRow, deltaColumn) {
         this._deltaColumn = deltaColumn;
         this._deltaRow = deltaRow;
     }
@@ -15,14 +15,14 @@ class Direction{
     /**
      * @returns {number} deltaColumn
      */
-    get deltaColumn(){
+    get deltaColumn() {
         return this._deltaColumn;
     }
 
     /**
      * @returns {number} deltaRow
      */
-    get deltaRow(){
+    get deltaRow() {
         return this._deltaRow;
     }
 }

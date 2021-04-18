@@ -1,5 +1,5 @@
 //==TILES==\\
-const tileSize = 15; 
+const tileSize = 15;
 
 //==PACMAN==\\
 const PACMAN_ID = "Pacman";
