@@ -165,7 +165,7 @@ class GameView {
     }
 
     /**
-     * 
+     * Display restart button
      */
     displayRestart(){
         $("#game").append(`
