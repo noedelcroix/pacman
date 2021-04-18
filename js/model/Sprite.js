@@ -75,6 +75,17 @@ class Sprite extends Component {
     }
 
     /**
+     * change position if pacman go throw the wormhole.
+     */
+    checkWormhole(){
+        if(this._position.nextPosition(this.direction).column < 0){
+            this._position = new Position(this._position.row, this._position.column+RAW_MAZE.table[0].length);
+        }else if(this._position.nextPosition(this.direction).column > RAW_MAZE.table[0].length-1){
+            this._position = new Position(this._position.row, 0);
+        }
+    }
+
+    /**
      * @returns {Position} position
      */
     get position() {

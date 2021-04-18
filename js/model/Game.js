@@ -37,9 +37,19 @@ class Game {
     }
 
     /**
+     * Call check for wormhole.
+     * 
+     * @param {Sprite} sprite 
+     */
+    wormhole(sprite){
+        sprite.checkWormhole();
+    }
+
+    /**
      * Move pacman following the good direction (asked direction or current direction).
      */
     _movePacman() {
+        this.wormhole(this._pacman);
         if (this._pacman.askedToChangeDirection && this._maze.canWalkOn(this._pacman.position.nextPosition(this._pacman.askedDirection))) {
             this._pacman.changeDirection();
         }
@@ -56,6 +66,7 @@ class Game {
     _moveGhosts() {
         let alreadyHasBeenEaten = false;
         this._ghosts.forEach(ghost => {
+            this.wormhole(ghost);
             if (ghost.askedToChangeDirection && this._maze.canWalkOn(ghost.position.nextPosition(ghost.askedDirection))) {
                 ghost.changeDirection();
             }
