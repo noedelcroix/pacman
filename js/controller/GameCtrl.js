@@ -44,6 +44,7 @@ class GameCtrl {
         this._view.updateLives();
         this._timer = setInterval(() => {
             this._game.moveSprites();
+            this._pacmanView.setPacmanOrientation(this._game.pacman.direction);
             this._checkGameOver();
             this._checkEndLevel();
             this._view.updateFrame();

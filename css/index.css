@@ -92,9 +92,44 @@ body #game .pacman {
   border-radius: 15px 15px;
   z-index: 2;
 }
+body #game .pacman.EAST {
+  transform: rotateZ(0deg);
+}
+body #game .pacman.SOUTH {
+  transform: rotateZ(90deg);
+}
+body #game .pacman.WEST {
+  transform: rotateZ(180deg);
+}
+body #game .pacman.NORTH {
+  transform: rotateZ(-90deg);
+}
+body #game .pacman span {
+  clip-path: polygon(110% 100%, 40% 50%, 110% 0%);
+  background: black;
+}
 body #game .ghost {
-  background-color: red;
   z-index: 1;
+}
+body #game .ghost span {
+  background-color: black;
+  height: 20%;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+}
+body #game #ghost0 {
+  background-color: red;
+}
+body #game #ghost1 {
+  background-color: orange;
+}
+body #game #ghost2 {
+  background-color: pink;
+}
+body #game #ghost3 {
+  background-color: lightblue;
 }
 body #game input#Start {
   background-color: black;

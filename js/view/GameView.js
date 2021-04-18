@@ -110,14 +110,14 @@ class GameView {
             "left": `${(this._game.pacman.position.column * tileSize)}px`
         });
 
+        this._checkRemovedDotAndUpdateScore();
+
         this._game.ghosts.forEach((ghost) => {
             $(`#${ghost.id}`).css({
                 "top": `${(ghost.position.row * tileSize)}px`,
                 "left": `${(ghost.position.column * tileSize)}px`
             })
-        });
-
-        this._checkRemovedDotAndUpdateScore();
+        });  
     }
 
     /**
