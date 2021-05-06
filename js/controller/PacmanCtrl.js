@@ -18,4 +18,13 @@ class PacmanCtrl {
     askToChangeDirection(direction) {
         this._pacman.askToChangeDirection(direction);
     }
+
+    /**
+     * Get if pacman is energized or not.
+     * 
+     * @returns {boolean} isEnergized
+     */
+    get isEnergized() {
+        return this._pacman.isEnergized;
+    }
 }

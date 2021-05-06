@@ -10,6 +10,7 @@ class Pacman extends Sprite {
     constructor(position, direction) {
         super(position, direction, PACMAN_ID);
         this._nbLives = NB_LIVES;
+        this._isEnergizer = false;
     }
 
     /**
@@ -25,5 +26,21 @@ class Pacman extends Sprite {
      */
     get nbLives() {
         return this._nbLives;
+    }
+
+    /**
+     * Set is energized or not.
+     * @param {boolean} bool 
+     */
+    setEnergized(bool) {
+        this._isEnergizer = bool;
+    }
+
+    /**
+     * Get is energized or not.
+     * @returns {boolean} is energized 
+     */
+    get isEnergized() {
+        return this._isEnergizer;
     }
 }

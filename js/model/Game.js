@@ -30,6 +30,7 @@ class Game {
 
             if (this._removedDot.isEnergizer) {
                 this._score += 100;
+                this._pacman.setEnergized(true);
             } else {
                 this._score += 10;
             }
@@ -41,7 +42,7 @@ class Game {
      * 
      * @param {Sprite} sprite 
      */
-    wormhole(sprite){
+    wormhole(sprite) {
         sprite.checkWormhole();
     }
 
@@ -81,8 +82,12 @@ class Game {
             }
 
             if (!alreadyHasBeenEaten && ghost.canEat(this._pacman)) {
-                this._pacman.hasBeenEaten();
-                alreadyHasBeenEaten = true;
+                if (this._pacman.isEnergized) {
+                    this._pacman.setEnergized(false);
+                } else {
+                    this._pacman.hasBeenEaten();
+                    alreadyHasBeenEaten = true;
+                }
             }
         });
     }
@@ -152,7 +157,7 @@ class Game {
         }
     }
 
-    newGame(){
+    newGame() {
         this.nextLevel();
         this._score = 0;
     }

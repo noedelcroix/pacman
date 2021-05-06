@@ -46,6 +46,7 @@ class GameCtrl {
         this._timer = setInterval(() => {
             this._game.moveSprites();
             this._pacmanView.setPacmanOrientation(this._game.pacman.direction);
+            this._pacmanView.updateIsEnergized();
             this._checkGameOver();
             this._checkEndLevel();
             this._view.updateFrame();
@@ -59,7 +60,7 @@ class GameCtrl {
         this.run();
     }
 
-    restartHasBeenRequested(){
+    restartHasBeenRequested() {
         this._game.newGame();
         this._view.nextLevel();
         this._pacmanCtrl = new PacmanCtrl(this._game.pacman);

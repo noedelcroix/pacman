@@ -10,6 +10,12 @@
     100%
         opacity: 0
 
+@keyframes gradientColor
+    0%
+        background-position: 0% 0%
+    100%
+        background-position: 100% 100%
+
 *
     font-family: 'DogicaPixelRegular'
     font-weight: bolder
@@ -103,6 +109,11 @@ body
             span
                 clip-path: polygon(110% 100%, 40% 50%, 110% 0%)
                 background: black
+            
+            &.Energized
+                background: linear-gradient(yellow, orange, green, lightblue)
+                animation: gradientColor linear 0.5s infinite
+                background-size: 200% 200%
 
         .ghost
             z-index: 1

@@ -7,11 +7,12 @@ class PacmanView {
      * @param {PacmanCtrl} pacmanCtrl 
      */
     constructor(pacmanCtrl) {
+        this._pacmanCtrl = pacmanCtrl;
         $(".pacman span").css({
-            "animation": `pacmanEat 0.${Math.round(RUN_INTERVAL/20)<10 ? "0"+Math.round(RUN_INTERVAL/20) : Math.round(RUN_INTERVAL/20)}s linear infinite alternate-reverse`
+            "animation": `pacmanEat 0.${Math.round(RUN_INTERVAL / 20) < 10 ? "0" + Math.round(RUN_INTERVAL / 20) : Math.round(RUN_INTERVAL / 20)}s linear infinite alternate-reverse`
         });
 
-        $(window).on("keydown", (event)=>{
+        $(window).on("keydown", (event) => {
             switch (event.key) {
                 case "ArrowLeft":
                     pacmanCtrl.askToChangeDirection(Direction.WEST);
@@ -32,7 +33,7 @@ class PacmanView {
     /**
      * Set the orientation of pacman.
      */
-     setPacmanOrientation(direction) {
+    setPacmanOrientation(direction) {
         switch (direction) {
             case Direction.NORTH:
                 $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("NORTH");
@@ -46,6 +47,17 @@ class PacmanView {
             case Direction.EAST:
                 $(".pacman").removeClass("SOUTH NORTH EAST WEST").addClass("EAST");
                 break;
+        }
+    }
+
+    /**
+     * Update the view if pacman is energized or not.
+     */
+    updateIsEnergized() {
+        if (this._pacmanCtrl.isEnergized) {
+            $(".pacman").addClass("Energized");
+        } else if ($(".pacman").hasClass("Energized")) {
+            $(".pacman").removeClass("Energized");
         }
     }
 }

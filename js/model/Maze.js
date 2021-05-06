@@ -97,7 +97,7 @@ class Maze {
         if (this.canPick(position)) {
             const dot = this._layers[2].getTile(position) || this._layers[3].getTile(position);
 
-            if (dot.isenergizer) {
+            if (dot.isEnergizer) {
                 this._layers[3].setTile(position, undefined);
             } else {
                 this._layers[2].setTile(position, undefined);
